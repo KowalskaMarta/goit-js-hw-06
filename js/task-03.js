@@ -13,18 +13,18 @@ const images = [
   },
 ];
 
-
 const galleryList = document.querySelector(".gallery");
 
-let galleryHTML = "";
-
-
-images.forEach((image) => {
-  galleryHTML += `<li class="gallery-item"><img src="${image.url}" alt="${image.alt}" /></li>`;
+const galleryItems = images.map((image) => {
+  return `
+    <li class="gallery-item">
+      <img src="${image.url}" alt="${image.alt}" class="gallery-img">
+    </li>
+  `;
 });
 
-galleryList.innerHTML = galleryHTML;
- 
+galleryList.insertAdjacentHTML("beforeend", galleryItems.join(""));
+
 galleryList.classList.add("gallery-container");
 
 galleryList.style.listStyle = "none";
@@ -33,7 +33,6 @@ galleryList.style.flexFlow = "wrap";
 galleryList.style.gap = "10px";
 galleryList.style.justifyContent = "center";
 galleryList.style.alignItems = "center";
-
 
 const pictures = document.querySelectorAll("img");
 pictures.forEach((element) => {
